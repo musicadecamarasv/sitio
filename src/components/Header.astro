@@ -1,0 +1,76 @@
+---
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Acerca de', href: '/sobre-nosotros' },
+  { label: 'Conciertos', href: '/conciertos' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Articulos', href: '/blog' },
+  { label: 'Contacto', href: '/contacto' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <img src="/logo.png" alt="Sociedad de Musica de Camara de El Salvador" class="h-12 w-12" />
+      <span class="font-semibold text-lg hidden sm:inline">MCSV</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-amber-700',
+            currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+              ? 'text-amber-700'
+              : 'text-gray-600',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-gray-600 hover:text-gray-900"
+      aria-label="Abrir menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <div class="px-4 py-4 flex flex-col gap-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-sm font-medium transition-colors hover:text-amber-700',
+            currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+              ? 'text-amber-700'
+              : 'text-gray-600',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

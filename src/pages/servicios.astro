@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Newsletter from '../components/Newsletter.astro';
+
+const services = [
+  {
+    title: 'Conciertos y eventos de temporada',
+    text: 'Organizamos conciertos, conversatorios y talleres a lo largo del ano. Programamos musica que nos mueve de verdad, desde el barroco hasta estrenos de compositores contemporaneos, y la presentamos en espacios como el Teatro Nacional, el Museo MARTE y MUNA. Consulta nuestra programacion para saber que viene.',
+    cta: { label: 'Ver programacion', href: '/conciertos' },
+  },
+  {
+    title: 'Musica en vivo para eventos',
+    text: 'Si necesitas musica en vivo para un evento privado, corporativo, ceremonia o cualquier ocasion especial, podemos armar un ensamble a la medida. Cuentanos que tienes en mente y te preparamos una propuesta.',
+    cta: { label: 'Contactanos', href: '/contacto' },
+  },
+  {
+    title: 'Publicaciones Musicales',
+    text: 'Escribimos sobre musica de camara en El Salvador y en el mundo: entrevistas con musicos, notas sobre obras, reflexiones sobre la escena musical. Si te interesa ir mas alla de escuchar, aqui hay lectura.',
+    cta: { label: 'Leer articulos', href: '/blog' },
+  },
+  {
+    title: 'Tienda en linea',
+    text: 'Merch de la Sociedad para quienes quieran llevar la musica de camara puesta. Literalmente.',
+  },
+  {
+    title: 'Otras formas de colaborar',
+    text: 'No todo cabe en una lista de servicios. Si tienes una idea que involucra musica de camara, probablemente nos interesa conversar. Hemos trabajado en grabaciones, estrenos de obras nuevas, colaboraciones con otros colectivos y proyectos que no existian hasta que alguien llego con la propuesta. Si eres compositor y quieres estrenar una obra, si representas a una institucion cultural o educativa, si tienes un proyecto audiovisual que necesita musica original, o si simplemente tienes una idea que no sabes bien donde poner, escribenos.',
+  },
+];
+---
+
+<Base title="Servicios" description="Conoce los servicios de la Sociedad de Musica de Camara de El Salvador.">
+  <Hero
+    title="Nuestros Servicios"
+    subtitle="La Sociedad de Musica de Camara de El Salvador nacio para hacer musica, pero con el tiempo hemos descubierto que eso toma muchas formas. Estas son las maneras en que podemos colaborar contigo."
+  />
+
+  <section class="py-20">
+    <div class="max-w-3xl mx-auto px-4 space-y-16">
+      {services.map((service) => (
+        <div>
+          <h2 class="text-2xl font-bold">{service.title}</h2>
+          <p class="mt-4 text-gray-600 leading-relaxed">{service.text}</p>
+          {service.cta && (
+            <a href={service.cta.href} class="inline-block mt-4 text-amber-700 font-medium hover:text-amber-800">
+              {service.cta.label} &rarr;
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>

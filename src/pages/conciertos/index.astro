@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const allConcerts = await getCollection('conciertos');
+
+const upcoming = allConcerts
+  .filter((c) => c.data.status === 'upcoming')
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+const past = allConcerts
+  .filter((c) => c.data.status === 'past')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Base title="Conciertos" description="Proximos conciertos y archivo de la Sociedad de Musica de Camara de El Salvador.">
+  <Hero title="Conciertos" subtitle="Nuestra programacion de conciertos de musica de camara." />
+
+  {upcoming.length > 0 && (
+    <section class="py-20">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-8">Proximos conciertos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {upcoming.map((concert) => (
+            <a href={`/conciertos/${concert.id}`} class="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+              {concert.data.image && (
+                <img src={concert.data.image} alt={concert.data.title} class="w-full h-48 object-cover" />
+              )}
+              <div class="p-6">
+                <time class="text-sm text-amber-700 font-medium">
+                  {concert.data.date.toLocaleDateString('es-SV', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                  {concert.data.time && ` - ${concert.data.time}`}
+                </time>
+                <h3 class="mt-2 text-xl font-semibold group-hover:text-amber-700 transition-colors">{concert.data.title}</h3>
+                <p class="mt-1 text-gray-500 text-sm">{concert.data.venue}</p>
+                {concert.data.excerpt && <p class="mt-3 text-gray-600">{concert.data.excerpt}</p>}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {past.length > 0 && (
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-8">Conciertos pasados</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {past.map((concert) => (
+            <a href={`/conciertos/${concert.id}`} class="group block bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <time class="text-sm text-gray-500">
+                {concert.data.date.toLocaleDateString('es-SV', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <h3 class="mt-2 text-lg font-semibold group-hover:text-amber-700 transition-colors">{concert.data.title}</h3>
+              <p class="mt-1 text-gray-500 text-sm">{concert.data.venue}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {upcoming.length === 0 && past.length === 0 && (
+    <section class="py-20">
+      <div class="max-w-6xl mx-auto px-4 text-center text-gray-500">
+        <p>Proximamente publicaremos nuestra programacion de conciertos.</p>
+      </div>
+    </section>
+  )}
+</Base>

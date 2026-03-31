@@ -1,0 +1,47 @@
+---
+const navItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Acerca de', href: '/sobre-nosotros' },
+  { label: 'Conciertos', href: '/conciertos' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Articulos', href: '/blog' },
+  { label: 'Contacto', href: '/contacto' },
+];
+---
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-2">Sociedad de Musica de Camara</h3>
+        <p class="text-sm">de El Salvador</p>
+      </div>
+
+      <!-- Nav -->
+      <div>
+        <h4 class="text-white font-medium mb-3">Navegacion</h4>
+        <nav class="flex flex-col gap-2">
+          {navItems.map((item) => (
+            <a href={item.href} class="text-sm hover:text-amber-400 transition-colors">
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-white font-medium mb-3">Contacto</h4>
+        <div class="flex flex-col gap-2 text-sm">
+          <a href="tel:+50370424625" class="hover:text-amber-400 transition-colors">+503 7042 4625</a>
+          <a href="mailto:musicadecamarasv@gmail.com" class="hover:text-amber-400 transition-colors">musicadecamarasv@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+      <p>Derechos de Autor &copy; {new Date().getFullYear()} Sociedad de Musica de Camara de El Salvador</p>
+    </div>
+  </div>
+</footer>

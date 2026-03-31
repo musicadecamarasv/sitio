@@ -1,0 +1,21 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  image?: string;
+}
+
+const { name, role, image } = Astro.props;
+---
+
+<div class="text-center">
+  {image ? (
+    <img src={image} alt={name} class="w-48 h-48 rounded-full object-cover mx-auto" />
+  ) : (
+    <div class="w-48 h-48 rounded-full bg-gray-200 mx-auto flex items-center justify-center">
+      <span class="text-gray-400 text-4xl">{name.charAt(0)}</span>
+    </div>
+  )}
+  <h3 class="mt-4 font-semibold text-lg">{name}</h3>
+  <p class="text-gray-600 text-sm">{role}</p>
+</div>

@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import TeamCard from '../components/TeamCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+
+<Base title="Home">
+  <Hero
+    title="Musica de camara, en vivo, en tu pais"
+    subtitle="Somos un colectivo de musicos que programa y presenta conciertos de musica de camara en los mejores espacios culturales de El Salvador."
+    cta={{ label: 'Ver proximos conciertos', href: '/conciertos' }}
+  />
+
+  <!-- Services -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-50 rounded-xl">
+          <span class="text-amber-600 font-bold text-sm">01</span>
+          <h3 class="mt-2 text-xl font-semibold">Temporada de conciertos</h3>
+          <p class="mt-3 text-gray-600">
+            Presentamos conciertos en espacios como el Teatro Nacional, Museo MARTE y MUNA. Consulta nuestra programacion y reserva tus entradas.
+          </p>
+          <a href="/conciertos" class="inline-block mt-4 text-amber-700 font-medium hover:text-amber-800">
+            Ver conciertos &rarr;
+          </a>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl">
+          <span class="text-amber-600 font-bold text-sm">02</span>
+          <h3 class="mt-2 text-xl font-semibold">Musica en vivo para eventos</h3>
+          <p class="mt-3 text-gray-600">
+            Hacemos tu evento especial con musica de camara en vivo. Bodas, corporativos, cenas privadas.
+          </p>
+          <a href="/contacto" class="inline-block mt-4 text-amber-700 font-medium hover:text-amber-800">
+            Solicitar cotizacion &rarr;
+          </a>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-xl">
+          <span class="text-amber-600 font-bold text-sm">03</span>
+          <h3 class="mt-2 text-xl font-semibold">Tienda en linea</h3>
+          <p class="mt-3 text-gray-600">
+            Playeras, accesorios y mas. Lleva un pedazo de la Sociedad contigo.
+          </p>
+          <a href="/servicios" class="inline-block mt-4 text-amber-700 font-medium hover:text-amber-800">
+            Visita nuestra tienda &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold">Conocenos</h2>
+        <h3 class="mt-4 text-xl font-semibold text-amber-700">Nuestra historia</h3>
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          Fundada en 2022, la Sociedad de Musica de Camara reune a musicos que comparten una curiosidad genuina por este repertorio. Mas de 30 conciertos, 25 musicos involucrados y varias obras presentadas por primera vez en El Salvador.
+        </p>
+        <a
+          href="/sobre-nosotros"
+          class="inline-block mt-6 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors"
+        >
+          Leer mas
+        </a>
+      </div>
+      <div class="rounded-xl overflow-hidden">
+        <img src="/images/concierto-76.jpg" alt="Concierto de musica de camara" class="w-full h-80 object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Nuestro Equipo</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 justify-items-center">
+        <TeamCard name="Miguel Berganza" role="Director de Operaciones - Fundador" image="/images/miguel-berganza.jpg" />
+        <TeamCard name="Andrea Nolasco" role="Directora de Programacion Artistica" image="/images/andrea-nolasco.jpg" />
+        <TeamCard name="Mario Alvarenga" role="Director de Patrimonio y Alianzas" image="/images/mario-alvarenga.jpeg" />
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>
