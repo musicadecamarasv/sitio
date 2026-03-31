@@ -10,7 +10,7 @@ const { name, role, image } = Astro.props;
 
 <div class="text-center">
   {image ? (
-    <img src={image} alt={name} class="w-48 h-48 rounded-full object-cover mx-auto" />
+    <img src={image} alt={name} class="w-48 h-48 rounded-full object-cover object-top mx-auto" />
   ) : (
     <div class="w-48 h-48 rounded-full bg-gray-200 mx-auto flex items-center justify-center">
       <span class="text-gray-400 text-4xl">{name.charAt(0)}</span>

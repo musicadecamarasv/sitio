@@ -44,23 +44,23 @@ const timeline = [
   </section>
 
   <!-- Stats -->
-  <section class="py-16 bg-gray-900 text-white">
+  <section class="py-16 bg-azul-dark text-white">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
       <div>
-        <span class="text-4xl font-bold text-amber-400">30+</span>
-        <p class="mt-2 text-gray-300">Conciertos realizados</p>
+        <span class="text-4xl font-bold text-blue-300">30+</span>
+        <p class="mt-2 text-blue-200">Conciertos realizados</p>
       </div>
       <div>
-        <span class="text-4xl font-bold text-amber-400">2</span>
-        <p class="mt-2 text-gray-300">Estrenos mundiales</p>
+        <span class="text-4xl font-bold text-blue-300">2</span>
+        <p class="mt-2 text-blue-200">Estrenos mundiales</p>
       </div>
       <div>
-        <span class="text-4xl font-bold text-amber-400">5+</span>
-        <p class="mt-2 text-gray-300">Estrenos nacionales</p>
+        <span class="text-4xl font-bold text-blue-300">5+</span>
+        <p class="mt-2 text-blue-200">Estrenos nacionales</p>
       </div>
       <div>
-        <span class="text-4xl font-bold text-amber-400">25+</span>
-        <p class="mt-2 text-gray-300">Musicos participantes</p>
+        <span class="text-4xl font-bold text-blue-300">25+</span>
+        <p class="mt-2 text-blue-200">Musicos participantes</p>
       </div>
     </div>
   </section>
@@ -69,11 +69,11 @@ const timeline = [
   <section class="py-20">
     <div class="max-w-3xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-12">Nuestra historia</h2>
-      <div class="space-y-8 border-l-2 border-amber-300 pl-8">
+      <div class="space-y-8 border-l-2 border-azul/30 pl-8">
         {timeline.map((item) => (
           <div class="relative">
-            <div class="absolute -left-10 w-4 h-4 bg-amber-500 rounded-full border-2 border-white" />
-            <span class="text-amber-700 font-bold text-lg">{item.year}</span>
+            <div class="absolute -left-10 w-4 h-4 bg-azul rounded-full border-2 border-white" />
+            <span class="text-azul-dark font-bold text-lg">{item.year}</span>
             <p class="mt-2 text-gray-600 leading-relaxed">{item.text}</p>
           </div>
         ))}
@@ -82,14 +82,13 @@ const timeline = [
   </section>
 
   <!-- Team -->
-  <section class="py-20 bg-gray-50">
+  <section class="py-20 bg-neutral">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-12">Nuestro Equipo</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 justify-items-center">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 justify-items-center">
         <TeamCard name="Miguel Berganza" role="Director de Operaciones - Fundador" image="/images/miguel-berganza.jpg" />
         <TeamCard name="Andrea Nolasco" role="Directora de Programacion Artistica" image="/images/andrea-nolasco.jpg" />
         <TeamCard name="Mario Alvarenga" role="Director de Patrimonio y Alianzas" image="/images/mario-alvarenga.jpeg" />
-        <TeamCard name="Proximamente" role="" />
       </div>
     </div>
   </section>

@@ -14,8 +14,8 @@ const currentPath = Astro.url.pathname;
 <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
     <a href="/" class="flex items-center gap-3">
-      <img src="/logo.png" alt="Sociedad de Musica de Camara de El Salvador" class="h-12 w-12" />
-      <span class="font-semibold text-lg hidden sm:inline">MCSV</span>
+      <img src="/images/brandmark.png" alt="Sociedad de Musica de Camara de El Salvador" class="h-10 w-10" />
+      <span class="font-semibold text-lg hidden sm:inline text-azul-dark">MCSV</span>
     </a>
 
     <!-- Desktop nav -->
@@ -24,9 +24,9 @@ const currentPath = Astro.url.pathname;
         <a
           href={item.href}
           class:list={[
-            'text-sm font-medium transition-colors hover:text-amber-700',
+            'text-sm font-medium transition-colors hover:text-azul',
             currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-              ? 'text-amber-700'
+              ? 'text-azul'
               : 'text-gray-600',
           ]}
         >
@@ -54,9 +54,9 @@ const currentPath = Astro.url.pathname;
         <a
           href={item.href}
           class:list={[
-            'text-sm font-medium transition-colors hover:text-amber-700',
+            'text-sm font-medium transition-colors hover:text-azul',
             currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-              ? 'text-amber-700'
+              ? 'text-azul'
               : 'text-gray-600',
           ]}
         >
