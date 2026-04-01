@@ -14,13 +14,13 @@ const past = allConcerts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Base title="Conciertos" description="Proximos conciertos y archivo de la Sociedad de Musica de Camara de El Salvador.">
-  <Hero title="Conciertos" subtitle="Nuestra programacion de conciertos de musica de camara." />
+<Base title="Conciertos" description="Próximos conciertos y archivo de la Sociedad de Música de Cámara de El Salvador.">
+  <Hero title="Conciertos" subtitle="Nuestra programación de conciertos de música de cámara." />
 
   {upcoming.length > 0 && (
     <section class="py-20">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-8">Proximos conciertos</h2>
+        <h2 class="text-2xl font-bold mb-8">Próximos conciertos</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {upcoming.map((concert) => (
             <a href={`/conciertos/${concert.id}`} class="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
@@ -65,7 +65,7 @@ const past = allConcerts
   {upcoming.length === 0 && past.length === 0 && (
     <section class="py-20">
       <div class="max-w-6xl mx-auto px-4 text-center text-gray-500">
-        <p>Proximamente publicaremos nuestra programacion de conciertos.</p>
+        <p>Próximamente publicaremos nuestra programación de conciertos.</p>
       </div>
     </section>
   )}
