@@ -27,7 +27,8 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   if (!res.ok) {
-    return new Response(JSON.stringify({ error: 'Error al enviar el mensaje' }), {
+    const data = await res.json();
+    return new Response(JSON.stringify({ error: 'Error al enviar el mensaje', debug: data }), {
       status: 500,
     });
   }
