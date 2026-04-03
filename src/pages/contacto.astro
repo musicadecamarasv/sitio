@@ -23,6 +23,39 @@ import Newsletter from '../components/Newsletter.astro';
         </div>
       </div>
 
+      <div class="mt-12 p-8 bg-neutral rounded-xl">
+        <h3 class="text-xl font-semibold text-gray-900 mb-6">Envíanos un mensaje</h3>
+        <form id="contact-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Tu nombre"
+              class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azul"
+            />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Tu correo electrónico"
+              class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azul"
+            />
+          </div>
+          <textarea
+            name="message"
+            required
+            rows="5"
+            placeholder="¿En qué podemos ayudarte?"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azul resize-none"
+          ></textarea>
+          <button type="submit" class="px-6 py-3 bg-azul hover:bg-azul-dark text-white font-medium rounded-lg transition-colors">
+            Enviar mensaje
+          </button>
+        </form>
+        <p id="contact-msg" class="mt-4 text-sm hidden"></p>
+      </div>
+
       <div class="mt-8">
         <h3 class="font-semibold text-gray-900 mb-4">Síguenos en redes sociales</h3>
         <div class="flex items-center gap-5">
@@ -41,4 +74,44 @@ import Newsletter from '../components/Newsletter.astro';
   </section>
 
   <Newsletter />
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const msg = document.getElementById('contact-msg')!;
+    const btn = form.querySelector('button')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      msg.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          msg.textContent = '¡Mensaje enviado! Te responderemos pronto.';
+          msg.className = 'mt-4 text-sm text-green-700';
+          form.reset();
+        } else {
+          msg.textContent = result.error || 'Hubo un error. Intenta de nuevo.';
+          msg.className = 'mt-4 text-sm text-red-600';
+        }
+      } catch {
+        msg.textContent = 'Error de conexión. Intenta de nuevo.';
+        msg.className = 'mt-4 text-sm text-red-600';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Enviar mensaje';
+    });
+  </script>
 </Base>
