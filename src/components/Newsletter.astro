@@ -9,15 +9,58 @@
     <p class="mt-4 text-gray-600 max-w-xl mx-auto">
       Suscríbete a nuestro boletín y no te pierdas ningún evento
     </p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+    <form id="newsletter-form" class="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
       <input
         type="email"
+        name="email"
+        required
         placeholder="Tu correo electrónico"
         class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azul"
       />
-      <button class="px-6 py-3 bg-azul hover:bg-azul-dark text-white font-medium rounded-lg transition-colors">
+      <button type="submit" class="px-6 py-3 bg-azul hover:bg-azul-dark text-white font-medium rounded-lg transition-colors">
         Suscríbete
       </button>
-    </div>
+    </form>
+    <p id="newsletter-msg" class="mt-4 text-sm hidden"></p>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('newsletter-form') as HTMLFormElement;
+  const msg = document.getElementById('newsletter-msg')!;
+  const btn = form.querySelector('button')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = new FormData(form).get('email') as string;
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    msg.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        msg.textContent = '¡Gracias por suscribirte!';
+        msg.className = 'mt-4 text-sm text-green-700';
+        form.reset();
+      } else {
+        msg.textContent = data.error || 'Hubo un error. Intenta de nuevo.';
+        msg.className = 'mt-4 text-sm text-red-600';
+      }
+    } catch {
+      msg.textContent = 'Error de conexión. Intenta de nuevo.';
+      msg.className = 'mt-4 text-sm text-red-600';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Suscríbete';
+  });
+</script>
