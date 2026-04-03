@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   const { email } = await request.json();
 
   if (!email || typeof email !== 'string') {
@@ -11,9 +12,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
   }
 
-  const runtime = locals.runtime;
-  const apiKey = runtime.env.MAILERLITE_API_KEY;
-  const groupId = runtime.env.MAILERLITE_GROUP_ID;
+  const apiKey = env.MAILERLITE_API_KEY;
+  const groupId = env.MAILERLITE_GROUP_ID;
 
   const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
     method: 'POST',
